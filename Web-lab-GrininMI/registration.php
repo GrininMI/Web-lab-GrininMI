@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $pass  = $_POST['password'];
 
     if (!$login || !$email || !$pass) {
-        die("input all parameters");
+        die ("input all parameters");
     }
 
     $sql = "INSERT INTO users (username, email, password) VALUES ('$login', '$email', '$pass')";

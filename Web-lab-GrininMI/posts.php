@@ -1,3 +1,14 @@
+<?php
+    $link = mysqli_connect('127.0.0.1', 'root', 'kali', 'site_db'); 
+
+    $id = $_GET['id'];                         
+    $sql = "SELECT * FROM posts WHERE id=$id"; 
+    $res = mysqli_query($link, $sql);           
+    $rows = mysqli_fetch_array($res);
+    $title = $rows['title'];                    
+    $main_text = $rows['main_text'];            
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +25,10 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="row">
             <div class="col-12 text-center">
-                <!-- сюда в лабе 3 будут подгружаться название и текст поста -->
+                <?php
+                    echo "<h1> $title </h1>";
+                    echo "<p>$main_text </p>";
+                ?>
             </div>
         </div>
     </div>

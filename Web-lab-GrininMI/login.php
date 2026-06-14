@@ -2,7 +2,7 @@
 require_once('db.php');
 
 if (isset($_COOKIE['User'])) {
-    header("Location: profile.php");
+    header("Location: /profile.php");
     exit();
 }
 
@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $pass  = $_POST['password'];
 
     if (!$login || !$pass) {
-        die("input all parameters");
+        die ("input all parameters");
     }
 
     $sql = "SELECT * FROM users WHERE username='$login' AND password='$pass'";
@@ -21,10 +21,10 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($link, $sql);
 
     if (mysqli_num_rows($result) == 1 ) {
-        setcookie("User", $login, time() + 5);
-        exit();
+        setcookie("User", $login, time() + 7200, "/");
+        header("Location: /profile.php");
     } else {
-        echo "Не правильное имя или пароль ";
+        echo "incorrect username or password";
     }
 }
 ?>

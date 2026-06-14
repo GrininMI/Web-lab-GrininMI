@@ -15,10 +15,28 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h1 class="display-1">Login In, Maxim!</h1>
-                <div class="dflex justify-content-center gap-3">
-                    <a href="registration.php" class="btn btn-primary btn-lg">Registration</a>
-                    <a href="login.php" class="btn btn-secondary btn-lg">Login</a>
-                </div>
+
+                <?php
+                if(!isset($_COOKIE['User'])) { ?>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="registration.php" class="btn btn-primary">Registration</a>
+                        <a href="login.php" class="btn btn-primary">Login</a>
+                    </div>
+                <?php } else { 
+                    $link = mysqli_connect('127.0.0.1', 'root', 'kali', 'site_db');
+                    $sql = "SELECT * FROM posts";
+                    $result = mysqli_query($link, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        while($post = mysqli_fetch_array($result)) { 
+                            echo "<a href='posts.php?id=".$post["id"]."'>".$post["title"]."</a><br>"; }
+                    } else {
+                        echo "No posts yet.";
+                    }
+                    echo "<div class='mt-4'>";
+                    echo "<a href='profile.php' class='btn btn-primary'>Перейти в профиль</a>";
+                    echo "</div>";
+                }
+                ?>
             </div>
         </div>
     </div>    
