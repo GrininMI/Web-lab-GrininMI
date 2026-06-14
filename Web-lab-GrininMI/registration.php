@@ -1,3 +1,35 @@
+<?php
+require_once('db.php');
+$link = mysqli_connect($servername, $username, $password, $dbName);
+if (!$link) {
+    die("Ошибка подключения к БД: " . mysqli_connect_error());
+}
+
+if (isset($_COOKIE['User'])) {
+    header("Location: profile.php");
+    exit();
+}
+
+if (isset($_POST['submit'])) {
+    $login = $_POST['login'];
+    $email = $_POST['email'];
+    $pass  = $_POST['password'];
+
+    if (!$login || !$email || !$pass) {
+        die("input all parameters");
+    }
+
+    $sql = "INSERT INTO users (username, email, password) VALUES ('$login', '$email', '$pass')";
+
+    if (!mysqli_query($link, $sql)) {
+        echo "Не удалось добавить пользователя: " . mysqli_error($link);
+    } else {
+        header("Location: login.php");
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,3 +61,4 @@
     </div>
 </body>
 </html>
+
