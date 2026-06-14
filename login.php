@@ -1,0 +1,59 @@
+<?php
+require_once('db.php');
+
+if (isset($_COOKIE['User'])) {
+    header("Location: /profile.php");
+    exit();
+}
+
+$link = mysqli_connect($servername, $username, $password, $dbName);
+
+if (isset($_POST['submit'])) {
+    $login = $_POST['login'];
+    $pass  = $_POST['password'];
+
+    if (!$login || !$pass) {
+        die ("input all parameters");
+    }
+
+    $sql = "SELECT * FROM users WHERE username='$login' AND password='$pass'";
+
+    $result = mysqli_query($link, $sql);
+
+    if (mysqli_num_rows($result) == 1 ) {
+        setcookie("User", $login, time() + 7200, "/");
+        header("Location: /profile.php");
+    } else {
+        echo "incorrect username or password";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grinin Maxim</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+
+</script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="mb-4">Login In, Maxim!</h1>
+                <form action="login.php" method="post" class="d-flex flex-column gap-3">
+                    <input type="text" name="login" placeholder="Login" class="form-control-hacker-input">
+                    <input type="password" name="password" placeholder="Password" class="form-control-hacker-input">
+                    <button type="submit" class="btn btn-primary btn-lg" name="submit">Login</button>
+                    <p class="mt-3">Don't have an account? <a href="registration.php">Register</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</html>

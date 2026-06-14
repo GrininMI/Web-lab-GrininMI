@@ -1,0 +1,187 @@
+:root {
+    --bg:         #07090a;                      
+    --panel:      rgba(0, 255, 110, 0.035);     
+    --green:      #2bff88;                       
+    --green-dim:  #1f9d5b;                       
+    --green-soft: rgba(43, 255, 136, 0.25);     
+    --text:       #b8ffd9;                      
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Courier New", "DejaVu Sans Mono", monospace;
+    line-height: 1.6;
+    min-height: 100vh;
+    margin: 0;
+    padding-bottom: 40px;
+}
+
+.container,
+.container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h1, h2, h3 {
+    color: var(--green);
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(43, 255, 136, 0.45);
+}
+
+h1::after {
+    content: "_";
+    margin-left: 4px;
+    animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+a { color: var(--green); text-decoration: none; }
+a:hover { color: #ffffff; text-shadow: 0 0 8px var(--green); }
+
+.btn-primary {
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    color: #04140b;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: 0.15s;
+}
+.btn-primary:hover {
+    background-color: #58ffa6;
+    border-color: #58ffa6;
+    color: #04140b;
+    box-shadow: 0 0 14px rgba(43, 255, 136, 0.55);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid var(--green);
+    color: var(--green);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: 0.15s;
+}
+.btn-secondary:hover {
+    background-color: rgba(43, 255, 136, 0.12);
+    border-color: var(--green);
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(43, 255, 136, 0.35);
+}
+
+.form-control-hacker-input,
+.form-control.hacker-input,
+.hacker-input {
+    background-color: #0c1410;
+    color: var(--green);
+    border: 1px solid var(--green-soft);
+    border-radius: 6px;
+    padding: 10px 12px;
+    width: 100%;
+    transition: 0.15s;
+}
+.form-control-hacker-input::placeholder,
+.hacker-input::placeholder { color: var(--green-dim); }
+
+.form-control-hacker-input:focus,
+.form-control.hacker-input:focus,
+.hacker-input:focus {
+    outline: none;
+    background-color: #0c1410;
+    color: var(--green);
+    border-color: var(--green);
+    box-shadow: 0 0 10px rgba(43, 255, 136, 0.40);
+}
+
+.form-label { color: var(--text); margin-bottom: 6px; }
+.form-group { margin-bottom: 6px; }
+
+.col-12 form {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 26px 24px;
+    background: var(--panel);
+    border: 1px solid var(--green-soft);
+    border-radius: 12px;
+    box-shadow: 0 0 28px rgba(43, 255, 136, 0.08);
+    text-align: left;
+}
+
+.col-12 .d-flex.gap-3,
+.col-12 .d-flex.justify-content-center { margin-top: 10px; }
+
+.navbar.bg-dark {
+    background-color: #0a120d !important;
+    border-bottom: 1px solid var(--green-soft);
+    box-shadow: 0 2px 18px rgba(43, 255, 136, 0.15);
+}
+.navbar-brand { letter-spacing: 2px; }
+.navbar-brand img { border-radius: 4px; }
+
+.story-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 40px auto;
+    max-width: 900px;
+    padding: 24px;
+    background: var(--panel);
+    border: 1px solid var(--green-soft);
+    border-radius: 14px;
+}
+.story-text {
+    flex: 1 1 280px;
+    max-width: 420px;
+    text-align: left;
+}
+
+.hacker-image,
+.hacker-img {
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--green);
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(43, 255, 136, 0.45);
+}
+
+#postForm {
+    max-width: 640px;
+    margin: 0 auto 60px;
+    padding: 26px 24px;
+    background: var(--panel);
+    border: 1px solid var(--green-soft);
+    border-radius: 12px;
+    box-shadow: 0 0 28px rgba(43, 255, 136, 0.08);
+}
+
+.hacker-input::file-selector-button,
+.form-control-hacker-input::file-selector-button,
+.hacker-input::-webkit-file-upload-button,
+.form-control-hacker-input::-webkit-file-upload-button {
+    background-color: #0c1410;
+    color: var(--green);
+    border: 1px solid var(--green-soft);
+    border-radius: 6px;
+    padding: 6px 14px;
+    margin-right: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.15s;
+}
+.hacker-input::file-selector-button:hover,
+.form-control-hacker-input::file-selector-button:hover {
+    background-color: rgba(43, 255, 136, 0.12);
+    border-color: var(--green);
+    box-shadow: 0 0 10px rgba(43, 255, 136, 0.35);
+}
+
+@media (max-width: 640px) {
+    .story-container { gap: 24px; }
+    .story-text { text-align: center; max-width: 100%; }
+    .col-12 form { max-width: 100%; }
+}
